@@ -30,10 +30,9 @@ function required(name, value) {
 function embedFrom(feed) {
   const embed = new EmbedBuilder()
     .setTitle(feed.title)
-    .setDescription(feed.description + '\n\nChecked ' + feed.checkedLabel)
+    .setDescription(feed.description)
     .setColor(feed.color)
-    .setFooter(feed.footer)
-    .setTimestamp(new Date(feed.timestamp));
+    .setFooter(feed.footer);
   if (feed.fields.length) embed.addFields(feed.fields);
   return embed;
 }
@@ -64,9 +63,9 @@ async function publishFeed(channel, feed) {
 async function currentFeed() {
   try {
     const directory = await listRooms(relayUrl);
-    return renderFeed({ rooms: directory.rooms, checkedAt: Date.now() });
+    return renderFeed({ rooms: directory.rooms });
   } catch (error) {
-    return renderFeed({ checkedAt: Date.now(), error: error.message || 'Could not reach the multiplayer relay.' });
+    return renderFeed({ error: error.message || 'Could not reach the multiplayer relay.' });
   }
 }
 

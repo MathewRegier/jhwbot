@@ -78,8 +78,7 @@ function modeLabel(mode) {
   return mode === 'shared' ? 'Shared Physics' : 'Ghost Multiplayer';
 }
 
-function renderFeed({ rooms = [], checkedAt = Date.now(), error = '' } = {}) {
-  const stamp = Math.floor(checkedAt / 1000);
+function renderFeed({ rooms = [], error = '' } = {}) {
   const players = rooms.reduce((sum, room) => sum + room.players, 0);
   const title = error ? 'JHWBOT · Room feed unavailable' : rooms.length ? `JHWBOT · ${rooms.length} public room${rooms.length === 1 ? '' : 's'} · ${players} playing` : 'JHWBOT · No public rooms';
   const lines = error
@@ -104,9 +103,7 @@ function renderFeed({ rooms = [], checkedAt = Date.now(), error = '' } = {}) {
     description: lines.join('\n').slice(0, 4096),
     color: error ? 0xd4545c : rooms.length ? 0xf2cb64 : 0x536b75,
     fields,
-    footer: { text: 'JHWBOT · public rooms only' },
-    timestamp: new Date(checkedAt).toISOString(),
-    checkedLabel: `<t:${stamp}:R>`
+    footer: { text: 'JHWBOT · public rooms only' }
   };
 }
 
