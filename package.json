@@ -1,0 +1,16 @@
+{
+  "name": "jhwbot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "JHWBOT for Jimbob's Happy Wheels Discord. The first feature is a live public multiplayer room feed.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "discord.js": "14.22.1"
+  }
+}
